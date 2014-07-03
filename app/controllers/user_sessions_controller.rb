@@ -15,7 +15,7 @@ class UserSessionsController < ApplicationController
     us[:remember_me] = us['remember_me'].to_i != 0
     @user_session = UserSession.new(us)
     if @user_session.save
-      session[:is_admin] = true
+      session[:is_admin] = true # the important part for bhf
       session[:admin_account_id] = @user_session.user.id
       flash[:notice] = 'Login erfolgreich!'
       redirect_to bhf.root_url
@@ -25,7 +25,7 @@ class UserSessionsController < ApplicationController
   end
 
   def logout
-    session[:is_admin] = false
+    session[:is_admin] = false # the important part for bhf
     session[:admin_account_id] = nil
     current_user_session.destroy if current_user_session
     redirect_to root_url, notice: 'Sie wurden ausgeloggt!'
