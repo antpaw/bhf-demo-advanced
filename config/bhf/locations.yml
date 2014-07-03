@@ -1,0 +1,17 @@
+pages:
+- locations:
+  - location_landmarks:
+      extend_abstract: abstract_locations
+      table:
+        user_scope: my_landmarks
+
+  - location_restaurants:
+      extend_abstract: abstract_locations
+      table:
+        user_scope: my_restaurants
+
+  - location_hotels:
+      extend_abstract: abstract_locations
+      table:
+        user_scope: my_hotels
+

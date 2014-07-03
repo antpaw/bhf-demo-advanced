@@ -1,0 +1,14 @@
+pages:
+
+
+- settings:
+  - users:
+      table:
+        display: [id, name, login, email, last_login_at, created_at]
+      form:
+        display: [id, name, login, email, password, password_confirmation, roles]
+        types:
+          password: password
+          password_confirmation: password
+
+  - roles:

@@ -1,0 +1,18 @@
+pages:
+- abstract_page:
+  - abstract_locations:
+      model: Location
+      hooks:
+        # location_group_id logic is placed here
+        before_save: add_location_group
+      table:
+        user_scope: my_landmarks
+        show_duplicate: true
+        columns: [id, name, description, hidden]
+        per_page: 30
+      form:
+        display: [id, name, phone, fax, email, url, mappin, address, description, hidden, logo]
+        types:
+          logo: paperclip
+          description: markdown
+          assets: assets

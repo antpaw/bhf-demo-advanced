@@ -1,0 +1,12 @@
+.node
+  .label
+    %label Platzinfos
+  .input
+    - Property.all.each do |property|
+      .key_val_check_box_holder{style: 'display: inline-block; margin-right: 25px'}
+        = f.many_to_many_check_box property, :properties, params
+        
+    %div{style: 'display: inline-block; margin-right: 25px; color: red'}
+      = check_box :check, :all
+      = label nil, 'Alles', for: 'check_all'
+    

@@ -1,0 +1,20 @@
+.content_box
+  %h2 Login
+
+= form_for @user_session, url: {action: :create}, html: {id: :main_form} do |f|
+  .node
+    .label= f.label :login, 'Username'
+    .input= f.text_field :login, placeholder: 'admin', value: 'admin'
+  .node
+    .label= f.label :password, 'Password'
+    .input= f.password_field :password, placeholder: 'bhf_pw', value: 'bhf_pw'
+  .node
+    .label= f.label :remember_me, 'Remember me?'
+    .input= f.check_box :remember_me
+
+  .node
+    .label
+    .input
+      = f.submit 'Einloggen'
+      
+

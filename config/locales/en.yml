@@ -1,0 +1,19 @@
+en:
+  bhf:
+    page_title: bhf demo
+    platforms:
+      location_landmarks:
+        title: 
+          one: Landmark
+          other: Landmarks
+      location_restaurants:
+        title: 
+          one: Restaurant
+          other: Restaurants
+      location_hotels:
+        title: 
+          one: Hotel
+          other: Hotels
+      location:
+        infos:
+          content: 'This is a info-hint. <a href="http://daringfireball.net/projects/markdown/basics" target="_blank" tabindex="-1">Markdown Basics</a>'

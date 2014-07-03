@@ -1,0 +1,8 @@
+pages:
+- events:
+  - events:
+      table:
+        columns: [id, title, location, starts_at]
+        per_page: 30
+      form:
+        display: [id, title, location, starts_at]
