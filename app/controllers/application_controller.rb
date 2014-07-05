@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   layout false
   
   def index
-    @static = Static.where(id: 1).first
+    #@static = Static.where(id: 1).first
   end
   
   def reset_database

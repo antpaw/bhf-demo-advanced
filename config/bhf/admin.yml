@@ -11,4 +11,3 @@ pages:
           password: password
           password_confirmation: password
 
-  - roles:
