@@ -1,3 +1,3 @@
-# bhf demo mongoid
+# bhf demo advanced
 
-Live App: http://bhf-demo-mongoid.herokuapp.com/
+Live App: http://bhf-demo-advanced.herokuapp.com/
