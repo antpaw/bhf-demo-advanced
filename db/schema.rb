@@ -22,6 +22,12 @@ ActiveRecord::Schema.define(version: 20140603194500) do
     t.datetime "updated_at"
   end
 
+  create_table "location_groups", force: true do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "locations", force: true do |t|
     t.string   "name"
     t.string   "slug"
@@ -33,15 +39,23 @@ ActiveRecord::Schema.define(version: 20140603194500) do
     t.string   "fax"
     t.string   "email"
     t.string   "url"
+    t.float    "rating",            default: 0.0,     null: false
+    t.boolean  "hidden",            default: false,   null: false
+    t.integer  "location_group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
-    t.boolean  "hidden",            default: false,   null: false
-    t.integer  "location_group_id", default: 1,       null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
+
+  create_table "locations_properties", id: false, force: true do |t|
+    t.integer "location_id"
+    t.integer "property_id"
+  end
+
+  add_index "locations_properties", ["property_id", "location_id"], name: "index_locations_properties_on_location_id_and_property_id", unique: true
 
   create_table "locations_users", id: false, force: true do |t|
     t.integer "location_id"
@@ -50,14 +64,9 @@ ActiveRecord::Schema.define(version: 20140603194500) do
 
   add_index "locations_users", ["location_id", "user_id"], name: "index_locations_users_on_location_id_and_user_id", unique: true
 
-  create_table "posts", force: true do |t|
-    t.string   "headline"
-    t.string   "subheadline"
-    t.text     "content"
-    t.boolean  "published"
-    t.datetime "published_at"
-    t.integer  "category_id"
-    t.integer  "author_id"
+  create_table "properties", force: true do |t|
+    t.string   "name"
+    t.integer  "property_group_id", default: 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -77,7 +86,6 @@ ActiveRecord::Schema.define(version: 20140603194500) do
 
   create_table "statics", force: true do |t|
     t.string   "title"
-    t.string   "slug"
     t.string   "subheadline"
     t.text     "content"
     t.boolean  "hidden",      default: false, null: false

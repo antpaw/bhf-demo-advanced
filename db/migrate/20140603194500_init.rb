@@ -8,29 +8,45 @@ class Init < ActiveRecord::Migration
       t.timestamp   :starts_at
       t.timestamps
     end
-
-    create_table :locations do |t|
-      t.string   :name
-      t.string   :slug
-      t.float    :lat,               default: 49.0175
-      t.float    :lng,               default: 12.1066
-      t.text     :description
-      t.text     :address
-      t.string   :phone
-      t.string   :fax
-      t.string   :email
-      t.string   :url
-      t.boolean  :hidden,            default: false,   null: false
-      t.belongs_to  :location_group_id
-      t.timestamps
-    end
-    add_attachment :locations, :logo
     
     create_table :location_groups do |t|
       t.string   :name,       null: false
       t.timestamps
     end
+
+    create_table :locations do |t|
+      t.string      :name
+      t.string      :slug
+      t.float       :lat,               default: 49.0175
+      t.float       :lng,               default: 12.1066
+      t.text        :description
+      t.text        :address
+      t.string      :phone
+      t.string      :fax
+      t.string      :email
+      t.string      :url
+      t.float       :rating,            default: 0,       null: false
+      t.boolean     :hidden,            default: false,   null: false
+      t.belongs_to  :location_group
+      t.timestamps
+    end
+    add_attachment :locations, :logo
     
+    
+    create_table :properties do |t|
+      t.string   :name
+      t.integer  :property_group_id, default: 1
+      t.datetime :created_at
+      t.datetime :updated_at
+    end
+
+    create_table :locations_properties, id: false do |t|
+      t.integer :location_id
+      t.integer :property_id
+    end
+
+    add_index "locations_properties", ["property_id", "location_id"], name: "index_locations_properties_on_location_id_and_property_id", unique: true, using: :btree
+
 
     create_table :locations_users, id: false do |t|
       t.integer  :location_id
@@ -53,6 +69,7 @@ class Init < ActiveRecord::Migration
     end
 
 
+
     create_table :users, force: true do |t|
       t.string    :name
       t.string    :login,                          null: false
@@ -73,6 +90,16 @@ class Init < ActiveRecord::Migration
     add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
     add_index "users", ["login"], name: "index_users_on_login", unique: true, using: :btree
     add_index "users", ["persistence_token"], name: "index_users_on_persistence_token", unique: true, using: :btree
+
+    
+    create_table :statics do |t|
+      t.string   :title
+      t.string   :subheadline
+      t.text     :content
+      t.boolean  :hidden, default: false, null: false
+      t.timestamps
+    end
+    
 
   end
 end

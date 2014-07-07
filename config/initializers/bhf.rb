@@ -6,4 +6,6 @@ Bhf.configure do |config|
   
   config.js << 'bhf/extras.js'
   
+  config.css << 'bhf.css'
+  
 end

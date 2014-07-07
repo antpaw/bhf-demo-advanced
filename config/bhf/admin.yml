@@ -11,3 +11,9 @@ pages:
           password: password
           password_confirmation: password
 
+  - properties:
+      table:
+        display: [id, name, updated_at, created_at]
+
+  - statics:
+            

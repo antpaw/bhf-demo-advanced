@@ -11,8 +11,9 @@ pages:
         columns: [id, name, description, hidden]
         per_page: 30
       form:
-        display: [id, name, phone, fax, email, url, mappin, address, description, hidden, logo]
+        display: [id, name, description, rating, phone, fax, email, url, show_address, address, mappin, properties, hidden, logo]
         types:
           logo: paperclip
           description: markdown
           assets: assets
+          rating: rating_range

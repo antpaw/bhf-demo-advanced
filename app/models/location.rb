@@ -4,6 +4,8 @@ class Location < ActiveRecord::Base
 
   
   has_many :events
+  belongs_to :location_group
+  has_and_belongs_to_many :properties
   
   has_attached_file :logo
     
