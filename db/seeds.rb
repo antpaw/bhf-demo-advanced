@@ -1,3 +1,4 @@
+Static.delete_all
 User.delete_all
 Location.delete_all
 Event.delete_all
