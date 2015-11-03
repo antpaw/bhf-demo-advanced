@@ -7,7 +7,7 @@ gem 'uglifier'
 
 gem 'paperclip'
 
-gem 'bhf'
+gem 'bhf', path: '~/Projects/bhf/'
 
 gem 'authlogic'
 

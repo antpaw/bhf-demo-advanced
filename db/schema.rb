@@ -11,9 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140603194500) do
+ActiveRecord::Schema.define(version: 20151102220651) do
 
-  create_table "events", force: true do |t|
+  create_table "accounts", force: :cascade do |t|
+    t.integer  "supplier_id"
+    t.string   "account_number"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "accounts", ["supplier_id"], name: "index_accounts_on_supplier_id"
+
+  create_table "events", force: :cascade do |t|
     t.string   "title"
     t.integer  "location_id"
     t.text     "description"
@@ -22,13 +31,13 @@ ActiveRecord::Schema.define(version: 20140603194500) do
     t.datetime "updated_at"
   end
 
-  create_table "location_groups", force: true do |t|
+  create_table "location_groups", force: :cascade do |t|
     t.string   "name",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "locations", force: true do |t|
+  create_table "locations", force: :cascade do |t|
     t.string   "name"
     t.string   "slug"
     t.float    "lat",               default: 49.0175
@@ -50,28 +59,28 @@ ActiveRecord::Schema.define(version: 20140603194500) do
     t.datetime "logo_updated_at"
   end
 
-  create_table "locations_properties", id: false, force: true do |t|
+  create_table "locations_properties", id: false, force: :cascade do |t|
     t.integer "location_id"
     t.integer "property_id"
   end
 
   add_index "locations_properties", ["property_id", "location_id"], name: "index_locations_properties_on_location_id_and_property_id", unique: true
 
-  create_table "locations_users", id: false, force: true do |t|
+  create_table "locations_users", id: false, force: :cascade do |t|
     t.integer "location_id"
     t.integer "user_id"
   end
 
   add_index "locations_users", ["location_id", "user_id"], name: "index_locations_users_on_location_id_and_user_id", unique: true
 
-  create_table "properties", force: true do |t|
+  create_table "properties", force: :cascade do |t|
     t.string   "name"
     t.integer  "property_group_id", default: 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "roles", force: true do |t|
+  create_table "roles", force: :cascade do |t|
     t.string   "identifier"
     t.string   "name"
     t.integer  "position",   default: 0, null: false
@@ -79,12 +88,12 @@ ActiveRecord::Schema.define(version: 20140603194500) do
     t.datetime "updated_at"
   end
 
-  create_table "roles_users", id: false, force: true do |t|
+  create_table "roles_users", id: false, force: :cascade do |t|
     t.integer "role_id"
     t.integer "user_id"
   end
 
-  create_table "statics", force: true do |t|
+  create_table "statics", force: :cascade do |t|
     t.string   "title"
     t.string   "subheadline"
     t.text     "content"
@@ -93,7 +102,13 @@ ActiveRecord::Schema.define(version: 20140603194500) do
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
+  create_table "suppliers", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "login",                          null: false
     t.string   "email",                          null: false
