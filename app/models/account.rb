@@ -1,3 +1,7 @@
 class Account < ActiveRecord::Base
-  has_one :supplier
+  belongs_to :supplier
+
+  def to_bhf_s
+    account_number
+  end
 end

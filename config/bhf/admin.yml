@@ -13,10 +13,10 @@ pages:
       table:
         display: [id, name, updated_at, created_at]
 
+  - location_group:
+
   - statics:
 
-  # - accounts:
-  #     form:
-  #       display: [id, supplier, updated_at, created_at]
-  #
-  # - suppliers:
+  - accounts:
+
+  - suppliers:

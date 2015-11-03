@@ -1,3 +1,3 @@
 class Supplier < ActiveRecord::Base
-  has_many :accounts
+  has_one :account
 end
